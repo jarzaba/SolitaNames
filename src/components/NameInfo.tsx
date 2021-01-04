@@ -17,7 +17,7 @@ const NameInfo: React.FC<selectedNameProps> = ({ selectedName }) => {
   }
 
   return (
-    <Header2>
+    <Header2 data-cy='selected-name'>
       {selectedName.name}: {selectedName.amount}
     </Header2>
   );

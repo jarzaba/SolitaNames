@@ -1,6 +1,15 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+export const AppContainer = styled.div`
+  margin: auto;
+  max-width: 400;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const Header1 = styled.h1`
   display: flex;
   justify-content: center;
@@ -47,6 +56,19 @@ export const StyledLink = styled(Link)`
   text-decoration: none;
   &:hover {
     color: DeepPink;
+`;
+
+export const ShadowBox = styled.div`
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: DarkBlue;
 `;
 
 export const Input = styled.input`

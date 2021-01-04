@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ensure } from '../utils/undefinedChecker';
 import { Arrow } from './Arrow';
-import { StyledLink, Button } from './StyledComponents';
+import { StyledLink, Button, ShadowBox } from './StyledComponents';
 
 interface nameObj {
   name: string;
@@ -22,13 +22,12 @@ interface sortDir {
 
 const Namelist: React.FC<nameProps> = ({ namesFromDB }) => {
   const [names, setNames] = useState(namesFromDB);
-  // const [selectedName, setSelectedName] = useState<nameObj>();
   const [sortDirection, setSortDirection] = useState<sortDir[]>([
     { sortColumn: 'amount', direction: true },
     { sortColumn: 'name', direction: false },
   ]);
 
-  console.log(namesFromDB);
+  //console.log(namesFromDB);
 
   useEffect(() => {
     setNames(namesFromDB);
@@ -42,15 +41,15 @@ const Namelist: React.FC<nameProps> = ({ namesFromDB }) => {
     setSortDirection([...sortDirection, selectedColumn]);
     selectedColumn.direction
       ? setNames(
-          [...names].sort((a, b) =>
-            b[sortProp] < a[sortProp] ? -1 : Number(b[sortProp] > a[sortProp])
-          )
+        [...names].sort((a, b) =>
+          b[sortProp] < a[sortProp] ? -1 : Number(b[sortProp] > a[sortProp])
         )
+      )
       : setNames(
-          [...names].sort((a, b) =>
-            a[sortProp] < b[sortProp] ? -1 : Number(a[sortProp] > b[sortProp])
-          )
-        );
+        [...names].sort((a, b) =>
+          a[sortProp] < b[sortProp] ? -1 : Number(a[sortProp] > b[sortProp])
+        )
+      );
   };
 
   return (
@@ -62,23 +61,19 @@ const Namelist: React.FC<nameProps> = ({ namesFromDB }) => {
           alignItems: 'center',
         }}
       >
-        <Button onClick={() => handleSort('name')}>
+        <Button className='nameButton' onClick={() => handleSort('name')}>
           <Arrow sortColumn='name' sortDirection={sortDirection} />
           name
         </Button>
-        <Button onClick={() => handleSort('amount')}>
+        <Button className='amountButton' onClick={() => handleSort('amount')}>
           <Arrow sortColumn='amount' sortDirection={sortDirection} />
           amount
         </Button>
       </div>
-      <div
-        style={{
-          marginTop: 10,
-          marginLeft: 50,
-        }}
-      >
+      <ShadowBox>
         {names.map((item: nameObj) => (
           <div
+            className='namelist'
             key={item.name}
             style={{
               display: 'flex',
@@ -102,7 +97,7 @@ const Namelist: React.FC<nameProps> = ({ namesFromDB }) => {
                 marginTop: 0,
               }}
             >
-              <StyledLink to={`/names/${item.name}`}>{item.name}</StyledLink>
+              <StyledLink to={`/names/${item.name}`} data-cy='namelink'>{item.name}</StyledLink>
             </div>
             <div
               style={{
@@ -124,7 +119,7 @@ const Namelist: React.FC<nameProps> = ({ namesFromDB }) => {
             </div>
           </div>
         ))}
-      </div>
+      </ShadowBox>
     </div>
   );
 };

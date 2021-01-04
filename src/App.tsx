@@ -3,7 +3,7 @@ import { useRouteMatch, Switch, Route, Redirect } from 'react-router-dom';
 import './index.css';
 import NameList from './components/NameList';
 import NameInfo from './components/NameInfo';
-import { Header1 } from './components/StyledComponents';
+import { AppContainer, Header1 } from './components/StyledComponents';
 import { getAllNames } from './services/nameService';
 
 interface nameObj {
@@ -15,7 +15,7 @@ interface routerProps {
   id: string;
 }
 
-const App = () => {
+const App: React.FC = () => {
   const [names, setNames] = useState<nameObj[]>([]);
 
   useEffect(() => {
@@ -34,31 +34,21 @@ const App = () => {
     : null;
 
   return (
-    <div style={{}}>
-      <div
-        style={{
-          margin: 'auto',
-          maxWidth: 400,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-        }}
-      >
-        <Header1>{totalNumOfNames} Solita Names</Header1>
+    <AppContainer>
+      <Header1>{totalNumOfNames} Solita Names</Header1>
 
-        <Switch>
-          <Route path='/names/:id'>
-            <NameInfo selectedName={selectedName} />
-          </Route>
-          <Route path='/names'>
-            <NameList namesFromDB={names} />
-          </Route>
-          <Route path='/'>
-            <Redirect to='/names' />
-          </Route>
-        </Switch>
-      </div>
-    </div>
+      <Switch>
+        <Route path='/names/:id'>
+          <NameInfo selectedName={selectedName} />
+        </Route>
+        <Route path='/names'>
+          <NameList namesFromDB={names} />
+        </Route>
+        <Route path='/'>
+          <Redirect to='/names' />
+        </Route>
+      </Switch>
+    </AppContainer>
   );
 };
 

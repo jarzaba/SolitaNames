@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "@types/jest": "^26.0.19",
@@ -21,7 +20,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:watch": "jest --watch",
+    "test:verbose": "jest --verbose",
     "eject": "react-scripts eject",
+    "cypress:open": "cypress open",
     "server": "json-server -p3001 --watch https://raw.githubusercontent.com/solita/dev-academy-2021/main/names.json"
   },
   "proxy": "http://localhost:3100",
@@ -41,9 +43,22 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/cypress": "^7.0.3",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@types/jest": "^26.0.19",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.7",
-    "json-server": "^0.16.3"
+    "@types/testing-library__jest-dom": "^5.9.5",
+    "@typescript-eslint/eslint-plugin": "^4.11.1",
+    "@typescript-eslint/parser": "^4.11.1",
+    "cypress": "^6.2.0",
+    "eslint": "^7.17.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-cypress": "^2.11.2",
+    "eslint-plugin-react": "^7.22.0",
+    "json-server": "^0.16.3",
+    "ts-jest": "^26.4.4"
   }
 }

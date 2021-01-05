@@ -4,7 +4,8 @@
 Solita favorite names app with React, TypeScript, Node and Express. Tests with Jest and Cypress. 
 
 # Backend
-https://github.com/jarzaba/SolitaNamesBackend
+
+https://github.com/jarzaba/SolitaNamesBackend/tree/typescript
 
 # Working app
 

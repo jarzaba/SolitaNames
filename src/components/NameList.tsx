@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { ensure } from '../utils/undefinedChecker';
 import { Arrow } from './Arrow';
 import { StyledLink, Button, ShadowBox } from './StyledComponents';
@@ -27,18 +27,21 @@ const Namelist: React.FC<nameProps> = ({ namesFromDB }) => {
     { sortColumn: 'name', direction: false },
   ]);
 
-  //console.log(namesFromDB);
-
   useEffect(() => {
     setNames(namesFromDB);
   }, [namesFromDB]);
 
   const handleSort = (sortProp: 'amount' | 'name') => {
+    setSortDirection(
+      sortDirection.map((item) =>
+        item.sortColumn === sortProp
+          ? { ...item, direction: !item.direction }
+          : item
+      )
+    );
     const selectedColumn = ensure(
       sortDirection.find((item) => item.sortColumn === sortProp)
     );
-    selectedColumn.direction = !selectedColumn.direction;
-    setSortDirection([...sortDirection, selectedColumn]);
     selectedColumn.direction
       ? setNames(
         [...names].sort((a, b) =>
@@ -50,6 +53,8 @@ const Namelist: React.FC<nameProps> = ({ namesFromDB }) => {
           a[sortProp] < b[sortProp] ? -1 : Number(a[sortProp] > b[sortProp])
         )
       );
+    console.log(sortDirection);
+    console.log(names);
   };
 
   return (
@@ -97,7 +102,9 @@ const Namelist: React.FC<nameProps> = ({ namesFromDB }) => {
                 marginTop: 0,
               }}
             >
-              <StyledLink to={`/names/${item.name}`} data-cy='namelink'>{item.name}</StyledLink>
+              <StyledLink to={`/names/${item.name}`} data-cy='namelink'>
+                {item.name}
+              </StyledLink>
             </div>
             <div
               style={{

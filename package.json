@@ -26,7 +26,7 @@
     "cypress:open": "cypress open",
     "server": "json-server -p3001 --watch https://raw.githubusercontent.com/solita/dev-academy-2021/main/names.json"
   },
-  "proxy": "http://localhost:3100",
+  "proxy": "http://localhost:3765",
   "eslintConfig": {
     "extends": "react-app"
   },

@@ -1,11 +1,23 @@
-import styled from 'styled-components';
+import styled, { StyledProps } from 'styled-components';
 import { Link } from 'react-router-dom';
+
+type ItemAmountBarProps = StyledProps<{
+  amount: number;
+}>;
 
 export const AppContainer = styled.div`
   margin: auto;
   max-width: 400;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const MenuContainer = styled.div`
+  margin: auto;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 `;
@@ -69,6 +81,44 @@ export const ShadowBox = styled.div`
   border-width: 1px;
   border-radius: 5px;
   border-color: DarkBlue;
+`;
+
+export const List = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 0px;
+  margin-bottom: 0px;
+`;
+
+export const ListItem = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 70px;
+  padding-right: 3px;
+  font-size: 15px;
+  border-right: solid;
+  border-width: 1px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+`;
+
+export const ListItemAmountBar = styled.div(
+  (props: ItemAmountBarProps) =>
+    `
+    min-height: 15px;
+    width: ${props.amount ? props.amount * 5 : 0}px;
+    background: DarkBlue;
+    color: white;
+    `
+);
+
+export const ListItemAmount = styled.div`
+  font-size: 12px;
+  font-weight: 700;
+  color: DarkBlue;
+  padding: 3px;
 `;
 
 export const Input = styled.input`

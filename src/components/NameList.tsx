@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ensure } from '../utils/undefinedChecker';
 import { Arrow } from './Arrow';
-import { StyledLink, Button, ShadowBox } from './StyledComponents';
+import { StyledLink, Button, ShadowBox, List, ListItem, ListItemAmountBar, ListItemAmount, MenuContainer } from './StyledComponents';
 
 interface nameObj {
   name: string;
@@ -58,14 +58,8 @@ const Namelist: React.FC<nameProps> = ({ namesFromDB }) => {
   };
 
   return (
-    <div>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
+    <>
+      <MenuContainer>
         <Button className='nameButton' onClick={() => handleSort('name')}>
           <Arrow sortColumn='name' sortDirection={sortDirection} />
           name
@@ -74,60 +68,21 @@ const Namelist: React.FC<nameProps> = ({ namesFromDB }) => {
           <Arrow sortColumn='amount' sortDirection={sortDirection} />
           amount
         </Button>
-      </div>
+      </MenuContainer>
       <ShadowBox>
         {names.map((item: nameObj) => (
-          <div
-            className='namelist'
-            key={item.name}
-            style={{
-              display: 'flex',
-              justifyContent: 'flex-start',
-              alignItems: 'center',
-              flexDirection: 'row',
-              marginTop: 0,
-              marginBottom: 0,
-            }}
-          >
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-                width: 70,
-                paddingRight: 3,
-                fontSize: 15,
-                borderRight: 'solid',
-                borderWidth: 1,
-                marginBottom: 0,
-                marginTop: 0,
-              }}
-            >
+          <List key={item.name} className='namelist'>
+            <ListItem>
               <StyledLink to={`/names/${item.name}`} data-cy='namelink'>
                 {item.name}
               </StyledLink>
-            </div>
-            <div
-              style={{
-                minHeight: 15,
-                width: item.amount * 5,
-                background: 'DarkBlue',
-                color: 'white',
-              }}
-            ></div>
-            <div
-              style={{
-                fontSize: 12,
-                fontWeight: 700,
-                color: 'DarkBlue',
-                padding: 3,
-              }}
-            >
-              {item.amount}
-            </div>
-          </div>
+            </ListItem>
+            <ListItemAmountBar amount={item.amount} />
+            <ListItemAmount>{item.amount}</ListItemAmount>
+          </List>
         ))}
       </ShadowBox>
-    </div>
+    </>
   );
 };
 

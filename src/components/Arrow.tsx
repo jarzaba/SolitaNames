@@ -3,7 +3,7 @@ import { ensure } from '../utils/undefinedChecker';
 
 interface sortDir {
   sortColumn: string;
-  direction: boolean;
+  descending: boolean;
 }
 interface Props {
   sortDirection: sortDir[];
@@ -14,7 +14,7 @@ export const Arrow: React.FC<Props> = ({ sortDirection, sortColumn }) => {
   const selectedColumn = ensure(
     sortDirection.find((item) => item.sortColumn === sortColumn)
   );
-  if (!selectedColumn.direction) {
+  if (!selectedColumn.descending) {
     return (
       <svg
         height='20'

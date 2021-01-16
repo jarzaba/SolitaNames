@@ -21,7 +21,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:watch": "jest --watch",
-    "test:verbose": "jest --verbose",
+    "test:verbose": "jest --verbose --runInBand",
     "eject": "react-scripts eject",
     "cypress:open": "cypress open",
     "server": "json-server -p3001 --watch https://raw.githubusercontent.com/solita/dev-academy-2021/main/names.json"

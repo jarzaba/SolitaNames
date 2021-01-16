@@ -1,6 +1,8 @@
+/// <reference types="cypress" />
+
 describe('Solita names app', function () {
   beforeEach(function () {
-    cy.visit('http://localhost:3000');
+    cy.visit('http://localhost:3765');
   });
 
   it('can be opened', function () {
@@ -8,7 +10,7 @@ describe('Solita names app', function () {
   });
 
   it('the path is set to "/names"', function () {
-    cy.url().should('include', '/names')
+    cy.url().should('include', '/names');
   });
 
   it('renders total amount of names', function () {
@@ -19,26 +21,26 @@ describe('Solita names app', function () {
     cy.get('.namelist:last').contains('4');
   });
   it('the names can be sorted by name in descending and ascending order', function () {
-    cy.get('.nameButton').click({ force: true })
     cy.get('.namelist:first').contains('Ville');
-    cy.get('.nameButton').click({ force: true })
-    cy.get('.namelist:first').contains('Anna')
-  })
+    cy.get('.nameButton').click({ force: true });
+    cy.get('.namelist:first').contains('Anna');
+    cy.get('.nameButton').click({ force: true });
+    cy.get('.namelist:first').contains('Ville');
+  });
   it('the names can be sorted by amount in descending and ascending order', function () {
-    cy.get('.amountButton').click({ force: true })
+    cy.get('.amountButton').click({ force: true });
     cy.get('.namelist:first').contains('4');
-    cy.get('.amountButton').click({ force: true })
+    cy.get('.amountButton').click({ force: true });
     cy.get('.namelist:first').contains('24');
   });
   it('a name can be selected from the list', function () {
-    cy.get('[data-cy=namelink]:first').click({ force: true })
+    cy.get('[data-cy=namelink]:first').click({ force: true });
     cy.contains('Ville');
-    cy.get('[data-cy=selected-name]')
-  })
+    cy.get('[data-cy=selected-name]');
+  });
   it('after selecting a name, the path changes accordingly', function () {
-    cy.get('[data-cy=namelink]:first').click({ force: true })
+    cy.get('[data-cy=namelink]:first').click({ force: true });
     cy.contains('Ville');
-    cy.url().should('include', '/names/Ville')
-  })
-  
+    cy.url().should('include', '/names/Ville');
+  });
 });

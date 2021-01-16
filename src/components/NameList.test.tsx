@@ -20,7 +20,6 @@ describe('<NameList />', () => {
         <NameList namesFromDB={names} />
       </BrowserRouter>
     );
-    // ???
 
     expect(component.container).toHaveTextContent('Liisa');
   });
